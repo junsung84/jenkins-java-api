@@ -2,6 +2,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode</groupId>
   <artifactId>jenkinsjavaapi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>jenkinsjavaapi</name>
+  
+  <dependencies>
+     <dependency>
+		<groupId>commons-httpclient</groupId>
+		<artifactId>commons-httpclient</artifactId>
+		<version>3.1</version>
+	</dependency>
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>1.6.1</version>
+	</dependency>
+  </dependencies>
 </project>
