@@ -1,8 +1,6 @@
 package com.googlecode.jenkinsjavaapi;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -58,10 +56,10 @@ public class JenkinsClient {
 		return getMethod.getResponseHeader("X-Hudson")!=null;
 	}
 
-	public void createJob(String jobName, File configFile) throws IOException, HttpException {
+	public void createJob(String jobName, InputStream configFile) throws IOException, HttpException {
 		PostMethod postMethod = new PostMethod(jenkinsBaseURL+ "/createItem?name=" + jobName);
 		postMethod.setRequestHeader("Content-type","application/xml; charset=ISO-8859-1");
-		postMethod.setRequestEntity(new InputStreamRequestEntity(new FileInputStream(configFile)));
+		postMethod.setRequestEntity(new InputStreamRequestEntity(configFile));
 		postMethod.setDoAuthentication(true);
 		try {
 			int status = client.executeMethod(postMethod);
@@ -73,10 +71,10 @@ public class JenkinsClient {
 		}
 	}
 	
-	public void updateJob(String jobName, File updateFile) throws IOException, HttpException {
+	public void updateJob(String jobName, InputStream updateFile) throws IOException, HttpException {
 		PostMethod postMethod = new PostMethod(jenkinsBaseURL + "/job/"+ jobName + "/config.xml");
 		postMethod.setRequestHeader("Content-type","text/xml; charset=ISO-8859-1");
-		postMethod.setRequestEntity(new InputStreamRequestEntity(new FileInputStream(updateFile)));
+		postMethod.setRequestEntity(new InputStreamRequestEntity(updateFile));
 		try {
 			int status = client.executeMethod(postMethod);
 			if (status != 200) {
